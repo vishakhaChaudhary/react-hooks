@@ -1,70 +1,67 @@
-# Getting Started with Create React App
+This repository consist of following React hooks example which bring out the clarity on it for the beginners. So lets start:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. ##useState: 
 
-## Available Scripts
+    It is a Hook that allows you to have state variables in functional components, so basically useState is the ability to encapsulate local state in a functional component. The  useState hook is a special function that takes the initial state as an argument and returns an array of two entries.
 
-In the project directory, you can run:
+2. ##useReducer: 
+    
+    It is a Hook in React, used to state management in React. It is an alternative to useState. Accepts a reducer of type (state, action) => newState, and returns the current state paired with a dispatch method. It is used, when we have complex state like involves objects or arrays, next state is depend on previous one, data share among the components and update state more complex.
 
-### `npm start`
+3. ##useEffect: 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+    It is used for causing side effects in functional components and it is also capable for handling componentDidMount(), componentDidUpdate() and componentWillUnmount() life-cycle methods of class based components into functional component.
+                                                
+    ```useEffect(callback[, dependencies])```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+    - callback is the function containing the side-effect logic. callback is executed right after changes were being pushed to DOM.
+    - dependencies is an optional array of dependencies. useEffect() executes callback only if the dependencies have changed between renderings.
 
-### `npm test`
+    **Note:** _Put your side-effect logic into the callback function, then use the dependencies argument to control when you want the side-effect to run. That's the sole purpose of useEffect()._
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+4. ##useLayoutEffect: 
 
-### `npm run build`
+    The useLayoutEffect works similarly to useEffect but rather working asynchronously like useEffect hook, it fires synchronously after all DOM loading is done loading. This is useful for synchronously re-rendering the DOM and also to read the layout from the DOM. The hook works in the same phase as componentDidMount and componentDidUpdate methods.
+                                                
+    ```useLayoutEffect(callback[, dependencies])```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    **Note:** _We should only use useLayoutEffect if useEffect isn’t outputting the expected result._
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+5. ##useImperativeHandle: 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    It works in the similar phase of useRef hook but only it allows us to modify the instance that is going to be passed with the ref object which provides a reference to any DOM element. Although this hook is used in rare cases, it has some most advanced functionality.
 
-### `npm run eject`
+    ```useImperativeHandle(ref, createHandle, [deps])```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+6. ##useContext:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    The context provides a way to pass data or state through the component tree without having to pass props down manually through each nested component. It is designed to share data that can be considered as global data for a tree of React components, It accepts the value provided by React.createContext and then re-render the component whenever its value changes but you can still optimize its performance by using memorization.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    ```const context = useContext(initialValue);```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+7. ##useRef:
 
-## Learn More
+    It is a hook that accepts one argument as the initial value and returns a reference (aka ref). A reference is an object having a special property current.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    ```const ref = useRef();```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    **Note:**
 
-### Code Splitting
+        - The value of the reference is persisted (stays the same) between component re-renderings;
+        - Updating a reference doesn't trigger a component re-rendering.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+8. ##useMemo:
 
-### Analyzing the Bundle Size
+    It is a built-in React hook that accepts 2 arguments — a function compute that _computes_ a result and the depedencies array.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    ```const memoizedResult = useMemo(compute, dependencies);```
 
-### Making a Progressive Web App
+    During initial rendering, useMemo(compute, dependencies) invokes compute, memoizes the calculation result, and returns it to the component.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+    If during next renderings the dependencies don't change, then useMemo() doesn't invoke compute but returns the memoized value.
 
-### Advanced Configuration
+9. ##useCallback: 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+    It is used when you have a component in which the child is rerendering again and again without need. _useCallback_ will return a memoized version of the callback that only changes if one of the dependencies has changed.
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    ```const memoizedCallback = useCallback(() => { doSomething(a, b) },[a, b]);```
